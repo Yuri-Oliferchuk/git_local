@@ -34,10 +34,23 @@ const astrology = {
     'Пока не время перемен! У вас есть сложная задача – решить его!', 
     'Ищите компромисс! Вы успешно можете решать сложные вопросы!', 
     'День хорош для того, чтобы запустить грандиозные изменения!'],
+    _signs: ["Телец", "Близнецы", "Рак", "Лев", "Дева", "Весы", "Скорпион", "Стрелец", "Козерог", "Водолей", "Рыбы"],
     forecast() {
-        console.log(this.first[Math.floor(Math.random()*this.first.length)] + ' ' + this.second[Math.floor(Math.random()*this.second.length)] + ' ' + this.third[Math.floor(Math.random()*this.third.length)]);
+        //console.log(this.first[Math.floor(Math.random()*this.first.length)] + ' ' + this.second[Math.floor(Math.random()*this.second.length)] + ' ' + this.third[Math.floor(Math.random()*this.third.length)]);
+        return this.first[Math.floor(Math.random()*this.first.length)] + ' ' + this.second[Math.floor(Math.random()*this.second.length)] + ' ' + this.third[Math.floor(Math.random()*this.third.length)];
+    },
+    zodiacForecast() {
+        let selectSign = this._signs[Math.floor(Math.random()*this._signs.length)];
+        console.log(selectSign + " - " + this.forecast());
     }
-
 };
 
-astrology.forecast();
+const zodiac = {
+    _signs: ["Телец", "Близнецы", "Рак", "Лев", "Дева", "Весы", "Скорпион", "Стрелец", "Козерог", "Водолей", "Рыбы"],
+    forecast() {
+        let selectSign = this._signs[Math.floor(Math.random()*this._signs.length)];
+        return selectSign + " - " + astrology.forecast();
+    }
+};
+
+console.log("Случайный гороскоп: \n" + zodiac.forecast());
