@@ -1,4 +1,4 @@
-// Constant for creation astrology prognoses
+// object for creating random forecast
 const astrology = {
     first: ['Конец года! Сегодня день, чтобы завершить рутинные задания!',
     'Возможна судьбоносная встреча. Будьте бдительны!', 
@@ -35,22 +35,32 @@ const astrology = {
     'Ищите компромисс! Вы успешно можете решать сложные вопросы!', 
     'День хорош для того, чтобы запустить грандиозные изменения!'],
     _signs: ["Телец", "Близнецы", "Рак", "Лев", "Дева", "Весы", "Скорпион", "Стрелец", "Козерог", "Водолей", "Рыбы"],
+    // creating random forecast
     forecast() {
-        //console.log(this.first[Math.floor(Math.random()*this.first.length)] + ' ' + this.second[Math.floor(Math.random()*this.second.length)] + ' ' + this.third[Math.floor(Math.random()*this.third.length)]);
         return this.first[Math.floor(Math.random()*this.first.length)] + ' ' + this.second[Math.floor(Math.random()*this.second.length)] + ' ' + this.third[Math.floor(Math.random()*this.third.length)];
-    },
-    zodiacForecast() {
-        let selectSign = this._signs[Math.floor(Math.random()*this._signs.length)];
-        console.log(selectSign + " - " + this.forecast());
     }
 };
 
+// object for creating zodiac forecast
 const zodiac = {
     _signs: ["Телец", "Близнецы", "Рак", "Лев", "Дева", "Весы", "Скорпион", "Стрелец", "Козерог", "Водолей", "Рыбы"],
-    forecast() {
+    // creating forecast for random sign
+    forecastForRandomSign() {
         let selectSign = this._signs[Math.floor(Math.random()*this._signs.length)];
-        return selectSign + " - " + astrology.forecast();
+        return "Случайный гороскоп: \n" + selectSign + " - " + astrology.forecast();
+    },
+    // creating forecast for all signs
+    forecastForAll() {
+        let returnedText = "";
+        this._signs.forEach(element => {
+            returnedText += element  + " - " + astrology.forecast() + "\n\n";
+        });
+        return returnedText;
     }
 };
 
-console.log("Случайный гороскоп: \n" + zodiac.forecast());
+//creating forecast for random sign
+//console.log(zodiac.forecastForRandomSign());
+
+// creating forecast or all sign
+console.log(zodiac.forecastForAll());
